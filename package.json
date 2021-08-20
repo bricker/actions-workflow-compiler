@@ -1,0 +1,25 @@
+{
+  "name": "github-workflow-compiler",
+  "version": "1.0.0",
+  "description": "A better way to write Github Workflows",
+  "bin": {
+    "compile-workflows": "./bin/compile.js",
+    "decompile-workflows": "./bin/decompile.js"
+  },
+  "scripts": {
+    "compile-workflows": "bin/compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bricker/github-workflow-compiler.git"
+  },
+  "author": "Bryan Ricker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bricker/github-workflow-compiler/issues"
+  },
+  "homepage": "https://github.com/bricker/github-workflow-compiler#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

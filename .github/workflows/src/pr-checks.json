@@ -1,0 +1,13 @@
+{
+  "name": "PR checks",
+  "on": "pull_request",
+  "jobs": {
+    "test": {
+      "runs-on": "ubuntu-latest",
+      "name": "Test",
+      "steps": [
+        "*{{ checkout }}"
+      ]
+    }
+  }
+}
