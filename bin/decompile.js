@@ -8,7 +8,7 @@ const baseDir = './.github/workflows';
 
 async function run(files) {
   if (!files.length) {
-    files = (await fs.readdir(baseDir)).filter(f => path.extname(f).match(/ya?ml/));
+    files = (await fs.readdir(baseDir)).filter((f) => path.extname(f).match(/ya?ml/));
   }
 
   files.forEach(async (f) => {

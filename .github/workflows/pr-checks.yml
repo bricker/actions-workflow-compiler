@@ -3,14 +3,14 @@
 #
 #!! This file was compiled from its source: src/pr-checks.json
 #!! To make changes to this file, edit its source and re-compile.
-#!! See https://github.com/bricker/github-workflow-compiler for more information.
+#!! See README for more information.
 ###################################################
 
-name: PR checks
-on: pull_request
+name: 'PR checks'
+on: 'pull_request'
 jobs:
   test:
-    runs-on: ubuntu-latest
-    name: Test
+    runs-on: 'ubuntu-latest'
+    name: 'Test'
     steps:
-      - uses: actions/checkout@v2
+      - uses: 'actions/checkout@v2'
