@@ -91,7 +91,7 @@ src/pr-checks.json
 ```
 
 ## Fragments
-A fragments can contain any valid JSON data. How it is interpreted by the compiler depends on where it is used.
+A fragment can contain any valid JSON data. How it is interpreted by the compiler depends on where it is used.
 
 To reference a fragment, use the syntax: `"*{{ fragmentName }}"`, where `fragmentName` is the basename of the file. Note that the pointer is in a string. Example:
 
