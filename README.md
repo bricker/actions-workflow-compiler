@@ -220,7 +220,7 @@ src/release.json
 
 The resulting Workflow definition:
 
-```json
+```yml
 steps:
   - run: bin/release
     env:
