@@ -146,6 +146,7 @@ src/fragments/setup-node.json
     "run": "npm install"
   }
 ]
+```
 
 src/pr-lint.json
 
