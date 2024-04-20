@@ -1,11 +1,11 @@
 # Github Workflow Compiler
 
-As Github Actions is relatively new, there are some limitations in the Workflow syntax that this package attempts to fix. My hope is that this package becomes obsolete as Github adds these features to Github Actions.
+As Github Actions is relatively new, there are some limitations in the workflow syntax that this package attempts to fix. My hope is that this package becomes obsolete as Github adds these features to Github Actions.
 
 ## How to use this system
 
 - "Source" files are written in JSON and live at `.github/workflows/src/`.
-- The `src` directory contains your Workflow definitions (as JSON), as well as a `fragments` directory.
+- The `.github/workflows/src` directory contains your workflow definitions (as JSON), as well as a `fragments` directory.
 
 ### Example Project Structure
 
@@ -28,7 +28,7 @@ As Github Actions is relatively new, there are some limitations in the Workflow 
 
 ### Example fragment
 
-src/fragments/setup-node.json
+.github/workflows/src/fragments/setup-node.json
 
 ```json
 [
@@ -53,7 +53,7 @@ src/fragments/setup-node.json
 ]
 ```
 
-src/fragments/checkout.json
+.github/workflows/src/fragments/checkout.json
 
 ```json
 {
@@ -63,7 +63,7 @@ src/fragments/checkout.json
 
 ### Example workflow source file
 
-src/pr-checks.json
+.github/workflows/src/pr-checks.json
 
 ```json
 {
@@ -97,6 +97,7 @@ src/pr-checks.json
 ```
 
 ## Fragments
+
 A fragment can contain any valid JSON data. How it is interpreted by the compiler depends on where it is used.
 
 To reference a fragment, use the syntax: `"*{{ fragmentName }}"`, where `fragmentName` is the basename of the file. Note that the pointer is in a string. Example:
@@ -114,13 +115,13 @@ To reference a fragment, use the syntax: `"*{{ fragmentName }}"`, where `fragmen
 
 A fragment can also be a scalar value, for example:
 
-src/fragments/test-script.json
+.github/workflows/src/fragments/test-script.json
 
 ```json
 "bin/test"
 ```
 
-src/pr-checks.json
+.github/workflows/src/pr-checks.json
 
 ```json
 {
@@ -137,7 +138,7 @@ src/pr-checks.json
 
 If a fragment is an array, and it is used inside of another array, the fragment will be _spread_ into the parent array. This allows you define a set of steps, for example, and re-use those in many workflows.
 
-src/fragments/setup-node.json
+.github/workflows/src/fragments/setup-node.json
 
 ```json
 [
@@ -154,7 +155,7 @@ src/fragments/setup-node.json
 ]
 ```
 
-src/pr-lint.json
+.github/workflows/src/pr-lint.json
 
 ```json
 {
@@ -179,7 +180,7 @@ steps:
   - run: npm run lint
 ```
 
-If the array fragment is used inside of an object or as a value of a property, it will retain its Array structure.
+If the array fragment is used inside of an object or as a value of a property, it will retain its array structure.
 
 ### Merging Objects
 
@@ -189,7 +190,7 @@ The syntax to do this is similar to using fragments in other parts of your sourc
 
 **NOTE**: Because object keys are unordered in javascript, the order in which the fragments are merged is not guaranteed. If the order is important in your setup, use this feature with caution.
 
-src/fragments/api-config.json
+.github/workflows/src/fragments/api-config.json
 
 ```json
 {
@@ -198,7 +199,7 @@ src/fragments/api-config.json
 }
 ```
 
-src/fragments/network-params.json
+.github/workflows/src/fragments/network-params.json
 
 ```json
 {
@@ -207,7 +208,7 @@ src/fragments/network-params.json
 }
 ```
 
-src/release.json
+.github/workflows/src/release.json
 
 ```json
 {
@@ -224,7 +225,7 @@ src/release.json
 }
 ```
 
-The resulting Workflow definition:
+The resulting workflow definition:
 
 ```yml
 steps:
@@ -239,9 +240,9 @@ steps:
 
 ## How to make a change to a workflow
 
-The final `yml` files are compiled from the JSON source (in `src`) and output into `.github/workflows`. You should only edit the `json` files, as any changes you make the the `yml` will be overwritten. The `yml` files must be committed to source control because GitHub uses the checked-in workflow files.
+The final YAML files are compiled from the JSON source (in `.github/workflows/src`) and output into the root of `.github/workflows`. You should only edit the JSON files, as any changes made to the YAML files will be overwritten. The YAML files must be committed to source control because GitHub uses the checked-in workflow files.
 
-When you're done making your changes to the JSON source files, run `npx compile-workflows`. The script will generate new `yml` files from the JSON source.
+When you're done making your changes to the JSON source files, run `npx compile-workflows`. The script will generate new YAML files from the JSON source.
 
 ## Limitations
 
