@@ -9,16 +9,22 @@ As Github Actions is relatively new, there are some limitations in the Workflow 
 
 ### Example Project Structure
 
-- .github
-  - workflows
-    - src
-      - fragments
-        - checkout.json
-        - setup-node.json
-      - pr-checks.json
-      - release.json
-    pr-checks.yml
-    release.yml
+```
+| .github >
+
+    | workflows >
+        | pr-checks.yml
+        | release.yml
+
+        | src >
+            | pr-checks.json
+            | release.json
+
+            | fragments >
+                | checkout.json
+                | setup-node.json
+
+```
 
 ### Example fragment
 
